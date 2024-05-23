@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../apidoc/v2.html'>Foreman v2</a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>
+    Configs
+    
+  </li>
+  
+</ul>
+
+<div class='page-header'>
+  <h1>
+    Configs
+    <br>
+    <small></small>
+  </h1>
+</div>
+
+
+
+
+
+
+<div class='accordion' id='accordion'>
+
+    <hr>
+    <div class='pull-right small'>
+      <a href='../../apidoc/v2/configs/index.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-index'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /foreman_virt_who_configure/api/v2/configs
+          </a>
+          <br>
+          <small>List of virt-who configurations</small>
+        </h2>
+        <h2>
+          <a href='#description-index'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /foreman_virt_who_configure/api/v2/organizations/:organization_id/configs
+          </a>
+          <br>
+          <small>List of virt-who configurations per organization</small>
+        </h2>
+    </div>
+
+
+    <div id='description-index' class='collapse accordion-body'>
+      
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /foreman_virt_who_configure/api/configs
+200
+{
+  &quot;total&quot;: 3,
+  &quot;subtotal&quot;: 3,
+  &quot;page&quot;: 1,
+  &quot;per_page&quot;: 20,
+  &quot;search&quot;: null,
+  &quot;sort&quot;: {
+    &quot;by&quot;: null,
+    &quot;order&quot;: null
+  },
+  &quot;results&quot;: [
+    {
+      &quot;name&quot;: &quot;my vmware&quot;,
+      &quot;interval&quot;: 120,
+      &quot;organization_id&quot;: 447626467,
+      &quot;whitelist&quot;: &quot;a,b&quot;,
+      &quot;blacklist&quot;: null,
+      &quot;hypervisor_id&quot;: &quot;hostname&quot;,
+      &quot;hypervisor_type&quot;: &quot;esx&quot;,
+      &quot;hypervisor_server&quot;: &quot;vmware.example.com&quot;,
+      &quot;hypervisor_username&quot;: &quot;root&quot;,
+      &quot;debug&quot;: false,
+      &quot;satellite_url&quot;: &quot;foreman.example.com&quot;,
+      &quot;no_proxy&quot;: null,
+      &quot;status&quot;: &quot;unknown&quot;,
+      &quot;last_report_at&quot;: null,
+      &quot;out_of_date_at&quot;: null,
+      &quot;filter_host_parents&quot;: null,
+      &quot;exclude_host_parents&quot;: null,
+      &quot;kubeconfig_path&quot;: null,
+      &quot;prism_flavor&quot;: null,
+      &quot;ahv_internal_debug&quot;: null,
+      &quot;filtering_mode&quot;: 1,
+      &quot;id&quot;: 27,
+      &quot;http_proxy&quot;: {
+        &quot;id&quot;: 1022235412,
+        &quot;name&quot;: &quot;test&quot;,
+        &quot;url&quot;: &quot;http://test.com&quot;
+      },
+      &quot;proxy&quot;: &quot;http://test.com&quot;
+    },
+    {
+      &quot;name&quot;: &quot;config 27&quot;,
+      &quot;interval&quot;: 120,
+      &quot;organization_id&quot;: 447626468,
+      &quot;whitelist&quot;: null,
+      &quot;blacklist&quot;: null,
+      &quot;hypervisor_id&quot;: &quot;hostname&quot;,
+      &quot;hypervisor_type&quot;: &quot;esx&quot;,
+      &quot;hypervisor_server&quot;: &quot;vmware.example.com&quot;,
+      &quot;hypervisor_username&quot;: &quot;root&quot;,
+      &quot;debug&quot;: false,
+      &quot;satellite_url&quot;: &quot;foreman.example.com&quot;,
+      &quot;no_proxy&quot;: null,
+      &quot;status&quot;: &quot;out_of_date&quot;,
+      &quot;last_report_at&quot;: &quot;2024-05-23 17:43:53 UTC&quot;,
+      &quot;out_of_date_at&quot;: &quot;2024-05-23 19:43:53 UTC&quot;,
+      &quot;filter_host_parents&quot;: null,
+      &quot;exclude_host_parents&quot;: null,
+      &quot;kubeconfig_path&quot;: null,
+      &quot;prism_flavor&quot;: null,
+      &quot;ahv_internal_debug&quot;: null,
+      &quot;filtering_mode&quot;: 0,
+      &quot;id&quot;: 28,
+      &quot;http_proxy&quot;: null
+    },
+    {
+      &quot;name&quot;: &quot;config 28&quot;,
+      &quot;interval&quot;: 120,
+      &quot;organization_id&quot;: 447626469,
+      &quot;whitelist&quot;: null,
+      &quot;blacklist&quot;: null,
+      &quot;hypervisor_id&quot;: &quot;hostname&quot;,
+      &quot;hypervisor_type&quot;: &quot;esx&quot;,
+      &quot;hypervisor_server&quot;: &quot;vmware.example.com&quot;,
+      &quot;hypervisor_username&quot;: &quot;root&quot;,
+      &quot;debug&quot;: false,
+      &quot;satellite_url&quot;: &quot;foreman.example.com&quot;,
+      &quot;no_proxy&quot;: null,
+      &quot;status&quot;: &quot;ok&quot;,
+      &quot;last_report_at&quot;: &quot;2024-05-23 19:43:53 UTC&quot;,
+      &quot;out_of_date_at&quot;: &quot;2024-05-23 21:43:53 UTC&quot;,
+      &quot;filter_host_parents&quot;: null,
+      &quot;exclude_host_parents&quot;: null,
+      &quot;kubeconfig_path&quot;: null,
+      &quot;prism_flavor&quot;: null,
+      &quot;ahv_internal_debug&quot;: null,
+      &quot;filtering_mode&quot;: 0,
+      &quot;id&quot;: 29,
+      &quot;http_proxy&quot;: null
+    }
+  ]
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>location_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current location context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>organization_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current organization context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>search</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>filter results</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>order</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Sort and order by a searchable field, e.g. &#39;&lt;field&gt; DESC&#39;</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>page</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Page number, starting at 1</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>per_page</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Number of results per page to return, &#39;all&#39; to return all results</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must match regular expression <code>/\A([1-9]\d*|all)\Z$/</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../../apidoc/v2/configs/show.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-show'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /foreman_virt_who_configure/api/v2/configs/:id
+          </a>
+          <br>
+          <small>Show a virt-who configuration</small>
+        </h2>
+    </div>
+
+
+    <div id='description-show' class='collapse accordion-body'>
+      
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /foreman_virt_who_configure/api/configs/20
+200
+{
+  &quot;name&quot;: &quot;config 22&quot;,
+  &quot;interval&quot;: 120,
+  &quot;organization_id&quot;: 447626459,
+  &quot;whitelist&quot;: null,
+  &quot;blacklist&quot;: null,
+  &quot;hypervisor_id&quot;: &quot;hostname&quot;,
+  &quot;hypervisor_type&quot;: &quot;esx&quot;,
+  &quot;hypervisor_server&quot;: &quot;vmware.example.com&quot;,
+  &quot;hypervisor_username&quot;: &quot;root&quot;,
+  &quot;debug&quot;: false,
+  &quot;satellite_url&quot;: &quot;foreman.example.com&quot;,
+  &quot;no_proxy&quot;: null,
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;last_report_at&quot;: &quot;2024-05-23 19:43:52 UTC&quot;,
+  &quot;out_of_date_at&quot;: &quot;2024-05-23 21:43:52 UTC&quot;,
+  &quot;filter_host_parents&quot;: null,
+  &quot;exclude_host_parents&quot;: null,
+  &quot;kubeconfig_path&quot;: null,
+  &quot;prism_flavor&quot;: null,
+  &quot;ahv_internal_debug&quot;: null,
+  &quot;filtering_mode&quot;: 0,
+  &quot;id&quot;: 20,
+  &quot;http_proxy&quot;: null
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>location_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current location context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>organization_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current organization context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>string from 2 to 128 characters containing only alphanumeric characters, space, &#39;_&#39;, &#39;-&#39; with no leading or trailing space..</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../../apidoc/v2/configs/deploy_script.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-deploy_script'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            GET /foreman_virt_who_configure/api/v2/configs/:id/deploy_script
+          </a>
+          <br>
+          <small>Renders a deploy script for the specified virt-who configuration</small>
+        </h2>
+    </div>
+
+
+    <div id='description-deploy_script' class='collapse accordion-body'>
+      
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">GET /foreman_virt_who_configure/api/configs/31/deploy_script.sh
+200
+#!/bin/bash
+heading() {
+  echo -e &quot;\n== $1 ==&quot;
+}
+
+step() {
+  step_count=5
+  heading &quot;[$1/$step_count] $2&quot;
+}
+
+version_lte() {
+  [ &quot;$1&quot; = &quot;`echo -e &quot;$1\n$2&quot; | sort -V | head -n1`&quot; ]
+}
+
+version_lt() {
+  [ &quot;$1&quot; = &quot;$2&quot; ] &amp;&amp; return 1 || version_lte $1 $2
+}
+
+verify_minimal_version() {
+  minimal_version=0.24.2
+  installed_version=`rpm -q --queryformat &#39;%{VERSION}&#39; virt-who`
+
+  if version_lt $installed_version $minimal_version; then
+    echo &quot;virt-who $installed_version does not meet minimum requirements, please make sure this host is properly subscribed and has access to katello-host-tools repository, minimal virt-who version is $minimal_version&quot;
+    return 1
+  else
+    return 0
+  fi
+}
+
+result_code=0
+
+compose_install_command() {
+  $1 packages unlock
+  $1 advanced procedure run packages-install --packages virt-who --assumeyes || result_code=$(($result_code|32))
+  $1 packages lock
+}
+
+install_virt_who() {
+  if `rpm -q satellite-maintain &gt; /dev/null`; then
+    compose_install_command satellite-maintain
+  elif `rpm -q rubygem-foreman_maintain &gt; /dev/null`; then
+    compose_install_command foreman-maintain
+  else
+    yum install -y virt-who || result_code=$(($result_code|32))
+  fi
+}
+
+step 1 &quot;Installing virt-who&quot;
+install_virt_who
+
+if verify_minimal_version; then
+  step 2 &quot;Encrypting password&quot;
+  cr_password=$(virt-who-password --password $(echo Y2hhbmdlbWU=|base64 -d) 2&gt; /dev/null)
+  user_password=$(virt-who-password --password &#39;tsdd7U42PzGD63Ay&#39; 2&gt; /dev/null)
+
+  step 3 &quot;Creating virt-who configuration&quot;
+  cat &gt; /etc/virt-who.d/virt-who-config-31.conf &lt;&lt; EOF
+### This configuration file is managed via the virt-who configure plugin
+### manual edits will be deleted.
+[virt-who-config-31]
+type=esx
+hypervisor_id=hostname
+owner=org33
+
+server=vmware.example.com
+username=root
+encrypted_password=$cr_password
+rhsm_hostname=foreman.example.com
+rhsm_username=virt_who_reporter_31
+rhsm_encrypted_password=$user_password
+rhsm_prefix=/rhsm
+EOF
+  if [ $? -ne 0 ]; then result_code=$(($result_code|2)); fi
+
+  step 4 &quot;Creating sysconfig virt-who configuration&quot;
+  cat &gt; /etc/virt-who.conf &lt;&lt; EOF
+### This configuration file is managed via the virt-who configure plugin
+### manual edits will be deleted.
+[global]
+debug=0
+interval=7200
+oneshot=False
+
+[system_environment]
+EOF
+  if [ $? -ne 0 ]; then result_code=$(($result_code|4)); fi
+
+  step 5 &quot;Enabling and restarting the virt-who service&quot;
+  systemctl enable virt-who || result_code=$(($result_code|8))
+  systemctl restart virt-who || result_code=$(($result_code|16))
+else
+  result_code=$(($result_code|1))
+fi
+
+heading &quot;Finished&quot;
+if [ $result_code -ne 0 ]; then
+  echo &quot;There were some errors during configuration:&quot;
+  [ $(($result_code&amp;0)) -ge 1 ] &amp;&amp; echo &#39;Success&#39;
+  [ $(($result_code&amp;1)) -ge 1 ] &amp;&amp; echo &#39;Newer version of virt-who is required, minimum version is 0.24.2&#39;
+  [ $(($result_code&amp;2)) -ge 1 ] &amp;&amp; echo &#39;Unable to create virt-who config file&#39;
+  [ $(($result_code&amp;4)) -ge 1 ] &amp;&amp; echo &#39;Unable to create sysconfig file&#39;
+  [ $(($result_code&amp;8)) -ge 1 ] &amp;&amp; echo &#39;Unable to enable virt-who service using systemctl&#39;
+  [ $(($result_code&amp;16)) -ge 1 ] &amp;&amp; echo &#39;Unable to start virt-who service, please see virt-who logs for more details&#39;
+  [ $(($result_code&amp;32)) -ge 1 ] &amp;&amp; echo &#39;Unable to install virt-who package, make sure the host is properly subscribed and has access to katello-host-tools repository&#39;
+else
+  echo &quot;Finished successfully&quot;
+fi
+
+exit $result_code
+</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>location_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current location context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>organization_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current organization context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>string from 2 to 128 characters containing only alphanumeric characters, space, &#39;_&#39;, &#39;-&#39; with no leading or trailing space..</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../../apidoc/v2/configs/create.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-create'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            POST /foreman_virt_who_configure/api/v2/configs
+          </a>
+          <br>
+          <small>Create a virt-who configuration</small>
+        </h2>
+    </div>
+
+
+    <div id='description-create' class='collapse accordion-body'>
+      
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">POST /foreman_virt_who_configure/api/configs
+{
+  &quot;foreman_virt_who_configure_config&quot;: {
+    &quot;name&quot;: &quot;my new config&quot;,
+    &quot;filtering_mode&quot;: 0,
+    &quot;hypervisor_id&quot;: &quot;uuid&quot;,
+    &quot;hypervisor_type&quot;: &quot;kubevirt&quot;,
+    &quot;satellite_url&quot;: &quot;foreman.example.com&quot;,
+    &quot;organization_id&quot;: 447626466
+  },
+  &quot;config&quot;: {}
+}
+422
+{
+  &quot;error&quot;: {
+    &quot;id&quot;: null,
+    &quot;errors&quot;: {
+      &quot;kubeconfig_path&quot;: [
+        &quot;can&#39;t be blank&quot;
+      ]
+    },
+    &quot;full_messages&quot;: [
+      &quot;Kubeconfig path can&#39;t be blank&quot;
+    ]
+  }
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>location_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current location context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>organization_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current organization context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>foreman_virt_who_configure_config</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Hash</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[name]</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[interval]</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration interval in minutes</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>60</code>, <code>120</code>, <code>240</code>, <code>480</code>, <code>720</code>, <code>1440</code>, <code>2880</code>, <code>4320</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[filtering_mode]</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor filtering mode, 0 means no filtering, 1 means whitelist, 2 means blacklist</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>0</code>, <code>1</code>, <code>2</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[whitelist]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor whitelist, applicable only when filtering mode is set to 1. Wildcards and regular expressions are supported, multiple records must be separated by comma.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[blacklist]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor blacklist, applicable only when filtering mode is set to 2. Wildcards and regular expressions are supported, multiple records must be separated by comma.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[filter_host_parents]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Applicable only for esx provider type. Only hosts which parent (usually ComputeResource) name is specified in comma-separated list in this option will be reported. Wildcards and regular expressions are supported, multiple records must be separated by comma. Put the value into the double-quotes if it contains special characters like comma. All new line characters will be removed in resulting configuration file, white spaces are removed from beginning and end.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[exclude_host_parents]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Applicable only for esx provider type. Hosts which parent (usually ComputeResource) name is specified in comma-separated list in this option will <strong>NOT</strong> be reported. Wildcards and regular expressions are supported, multiple records must be separated by comma. Put the value into the double-quotes if it contains special characters like comma. All new line characters will be removed in resulting configuration file, white spaces are removed from beginning and end.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_id]</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Specifies how the hypervisor will be identified.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>hostname</code>, <code>uuid</code>, <code>hwuuid</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_type]</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>esx</code>, <code>hyperv</code>, <code>libvirt</code>, <code>kubevirt</code>, <code>ahv</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_server]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Fully qualified host name or IP address of the hypervisor</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_username]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Account name by which virt-who is to connect to the hypervisor.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_password]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor password, required for all hypervisor types except for libvirt/kubevirt.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[satellite_url]</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Foreman server FQDN</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[debug]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Enable debugging output</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>true</code>, <code>false</code>, <code>1</code>, <code>0</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[kubeconfig_path]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration file containing details about how to connect to the cluster and authentication details.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[http_proxy_id]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>HTTP proxy that should be used for communication between the server on which virt-who is running and the hypervisors and virtualization managers.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[no_proxy]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Ignore proxy. A comma-separated list of hostnames or domains or ip addresses to ignore proxy settings for. Optionally this may be set to * to bypass proxy settings for all hostnames domains or ip addresses.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[organization_id]</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Organization of the virt-who configuration</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[prism_flavor]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Select the Prism flavor you are connecting to</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>central</code>, <code>element</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[ahv_internal_debug]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Option Enable debugging output is required to enable AHV internal debug. It provides extra AHV debug information when both options are enabled</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>true</code>, <code>false</code>, <code>1</code>, <code>0</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../../apidoc/v2/configs/update.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-update'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            PUT /foreman_virt_who_configure/api/v2/configs/:id
+          </a>
+          <br>
+          <small>Update a virt-who configuration</small>
+        </h2>
+    </div>
+
+
+    <div id='description-update' class='collapse accordion-body'>
+      
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">PUT /foreman_virt_who_configure/api/configs/23
+{
+  &quot;foreman_virt_who_configure_config&quot;: {
+    &quot;name&quot;: &quot;updated&quot;,
+    &quot;interval&quot;: 240,
+    &quot;hypervisor_password&quot;: &quot;new_pass&quot;
+  },
+  &quot;config&quot;: {}
+}
+200
+{
+  &quot;name&quot;: &quot;updated&quot;,
+  &quot;interval&quot;: 240,
+  &quot;organization_id&quot;: 447626462,
+  &quot;whitelist&quot;: null,
+  &quot;blacklist&quot;: null,
+  &quot;hypervisor_id&quot;: &quot;hostname&quot;,
+  &quot;hypervisor_type&quot;: &quot;esx&quot;,
+  &quot;hypervisor_server&quot;: &quot;vmware.example.com&quot;,
+  &quot;hypervisor_username&quot;: &quot;root&quot;,
+  &quot;debug&quot;: false,
+  &quot;satellite_url&quot;: &quot;foreman.example.com&quot;,
+  &quot;no_proxy&quot;: null,
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;last_report_at&quot;: &quot;2024-05-23 19:43:52 UTC&quot;,
+  &quot;out_of_date_at&quot;: &quot;2024-05-23 21:43:52 UTC&quot;,
+  &quot;filter_host_parents&quot;: null,
+  &quot;exclude_host_parents&quot;: null,
+  &quot;kubeconfig_path&quot;: null,
+  &quot;prism_flavor&quot;: null,
+  &quot;ahv_internal_debug&quot;: null,
+  &quot;filtering_mode&quot;: 0,
+  &quot;id&quot;: 23,
+  &quot;http_proxy&quot;: null
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>location_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current location context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>organization_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current organization context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration numeric identifier</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>foreman_virt_who_configure_config</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Hash</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+    <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[name]</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration name</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[interval]</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration interval in minutes</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>60</code>, <code>120</code>, <code>240</code>, <code>480</code>, <code>720</code>, <code>1440</code>, <code>2880</code>, <code>4320</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[filtering_mode]</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor filtering mode, 0 means no filtering, 1 means whitelist, 2 means blacklist</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>0</code>, <code>1</code>, <code>2</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[whitelist]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor whitelist, applicable only when filtering mode is set to 1. Wildcards and regular expressions are supported, multiple records must be separated by comma.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[blacklist]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor blacklist, applicable only when filtering mode is set to 2. Wildcards and regular expressions are supported, multiple records must be separated by comma.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[filter_host_parents]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Applicable only for esx provider type. Only hosts which parent (usually ComputeResource) name is specified in comma-separated list in this option will be reported. Wildcards and regular expressions are supported, multiple records must be separated by comma. Put the value into the double-quotes if it contains special characters like comma. All new line characters will be removed in resulting configuration file, white spaces are removed from beginning and end.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[exclude_host_parents]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Applicable only for esx provider type. Hosts which parent (usually ComputeResource) name is specified in comma-separated list in this option will <strong>NOT</strong> be reported. Wildcards and regular expressions are supported, multiple records must be separated by comma. Put the value into the double-quotes if it contains special characters like comma. All new line characters will be removed in resulting configuration file, white spaces are removed from beginning and end.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_id]</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Specifies how the hypervisor will be identified.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>hostname</code>, <code>uuid</code>, <code>hwuuid</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_type]</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor type</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>esx</code>, <code>hyperv</code>, <code>libvirt</code>, <code>kubevirt</code>, <code>ahv</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_server]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Fully qualified host name or IP address of the hypervisor</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_username]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Account name by which virt-who is to connect to the hypervisor.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[hypervisor_password]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Hypervisor password, required for all hypervisor types except for libvirt/kubevirt.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[satellite_url]</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Foreman server FQDN</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[debug]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Enable debugging output</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>true</code>, <code>false</code>, <code>1</code>, <code>0</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[kubeconfig_path]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration file containing details about how to connect to the cluster and authentication details.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[http_proxy_id]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>HTTP proxy that should be used for communication between the server on which virt-who is running and the hypervisors and virtualization managers.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[no_proxy]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Ignore proxy. A comma-separated list of hostnames or domains or ip addresses to ignore proxy settings for. Optionally this may be set to * to bypass proxy settings for all hostnames domains or ip addresses.</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>String</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[organization_id]</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Organization of the virt-who configuration</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[prism_flavor]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Select the Prism flavor you are connecting to</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>central</code>, <code>element</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(250,250,250);'>
+    <td>
+      <strong>foreman_virt_who_configure_config[ahv_internal_debug]</strong>
+      <br>
+      <small>
+        optional
+        , nil allowed
+      </small>
+    </td>
+    <td>
+      
+<p>Option Enable debugging output is required to enable AHV internal debug. It provides extra AHV debug information when both options are enabled</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be one of: <code>true</code>, <code>false</code>, <code>1</code>, <code>0</code>.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+
+
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+    <hr>
+    <div class='pull-right small'>
+      <a href='../../apidoc/v2/configs/destroy.html'> >>> </a>
+    </div>
+    <div>
+        <h2>
+          <a href='#description-destroy'
+           class='accordion-toggle'
+           data-toggle='collapse'
+           data-parent='#accordion'>
+            DELETE /foreman_virt_who_configure/api/v2/configs/:id
+          </a>
+          <br>
+          <small>Delete a virt-who configuration</small>
+        </h2>
+    </div>
+
+
+    <div id='description-destroy' class='collapse accordion-body'>
+      
+
+
+
+  <h3>Examples</h3>
+    <pre class="prettyprint">DELETE /foreman_virt_who_configure/api/configs/51
+{
+  &quot;config&quot;: {}
+}
+200
+{
+  &quot;id&quot;: 51,
+  &quot;interval&quot;: 120,
+  &quot;hypervisor_id&quot;: &quot;hostname&quot;,
+  &quot;listing_mode&quot;: 0,
+  &quot;whitelist&quot;: null,
+  &quot;blacklist&quot;: null,
+  &quot;compute_resource_id&quot;: null,
+  &quot;organization_id&quot;: 447626492,
+  &quot;service_user_id&quot;: 49,
+  &quot;created_at&quot;: &quot;2024-05-23T19:44:56.587Z&quot;,
+  &quot;updated_at&quot;: &quot;2024-05-23T19:44:56.650Z&quot;,
+  &quot;debug&quot;: false,
+  &quot;hypervisor_type&quot;: &quot;esx&quot;,
+  &quot;hypervisor_server&quot;: &quot;vmware.example.com&quot;,
+  &quot;hypervisor_username&quot;: &quot;root&quot;,
+  &quot;hypervisor_password&quot;: &quot;changeme&quot;,
+  &quot;satellite_url&quot;: &quot;foreman.example.com&quot;,
+  &quot;no_proxy&quot;: null,
+  &quot;last_report_at&quot;: &quot;2024-05-23T19:43:56.586Z&quot;,
+  &quot;out_of_date_at&quot;: &quot;2024-05-23T21:43:56.586Z&quot;,
+  &quot;name&quot;: &quot;config 42&quot;,
+  &quot;filter_host_parents&quot;: null,
+  &quot;exclude_host_parents&quot;: null,
+  &quot;kubeconfig_path&quot;: null,
+  &quot;http_proxy_id&quot;: null,
+  &quot;prism_flavor&quot;: null,
+  &quot;ahv_internal_debug&quot;: null
+}</pre>
+
+  <h3>Params</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>location_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current location context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>organization_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current organization context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Configuration numeric identifier</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Must be a number.</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+
+    </div>
+</div>
+
+  
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>

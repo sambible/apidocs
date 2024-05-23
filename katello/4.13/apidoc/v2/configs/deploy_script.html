@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API documentation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link type='text/css' rel='stylesheet' href='../../../apidoc/stylesheets/bundled/bootstrap.min.css'/>
+<link type='text/css' rel='stylesheet' href='../../../apidoc/stylesheets/bundled/prettify.css'/>
+<link type='text/css' rel='stylesheet' href='../../../apidoc/stylesheets/bundled/bootstrap-responsive.min.css'/>
+  <link type='text/css' rel='stylesheet' href='../../../apidoc/stylesheets/application.css'/>
+  <!-- IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div id='container'>
+        <ul class='breadcrumb'>
+  <li>
+    <a href='../../../apidoc/v2.html'>Foreman v2</a>
+    <span class='divider'>/</span>
+  </li>
+  <li>
+    <a href='../../../apidoc/v2/configs.html'>
+      Configs
+      
+    </a>
+    <span class='divider'>/</span>
+  </li>
+  <li class='active'>deploy_script</li>
+  
+
+</ul>
+
+  <div class='page-header'>
+    <h1>
+      GET /foreman_virt_who_configure/api/v2/configs/:id/deploy_script
+      <br>
+      <small>Renders a deploy script for the specified virt-who configuration</small>
+    </h1>
+  </div>
+
+<div>
+
+  
+
+
+
+  <h2>Examples</h2>
+    <pre class="prettyprint">GET /foreman_virt_who_configure/api/configs/31/deploy_script.sh
+200
+#!/bin/bash
+heading() {
+  echo -e &quot;\n== $1 ==&quot;
+}
+
+step() {
+  step_count=5
+  heading &quot;[$1/$step_count] $2&quot;
+}
+
+version_lte() {
+  [ &quot;$1&quot; = &quot;`echo -e &quot;$1\n$2&quot; | sort -V | head -n1`&quot; ]
+}
+
+version_lt() {
+  [ &quot;$1&quot; = &quot;$2&quot; ] &amp;&amp; return 1 || version_lte $1 $2
+}
+
+verify_minimal_version() {
+  minimal_version=0.24.2
+  installed_version=`rpm -q --queryformat &#39;%{VERSION}&#39; virt-who`
+
+  if version_lt $installed_version $minimal_version; then
+    echo &quot;virt-who $installed_version does not meet minimum requirements, please make sure this host is properly subscribed and has access to katello-host-tools repository, minimal virt-who version is $minimal_version&quot;
+    return 1
+  else
+    return 0
+  fi
+}
+
+result_code=0
+
+compose_install_command() {
+  $1 packages unlock
+  $1 advanced procedure run packages-install --packages virt-who --assumeyes || result_code=$(($result_code|32))
+  $1 packages lock
+}
+
+install_virt_who() {
+  if `rpm -q satellite-maintain &gt; /dev/null`; then
+    compose_install_command satellite-maintain
+  elif `rpm -q rubygem-foreman_maintain &gt; /dev/null`; then
+    compose_install_command foreman-maintain
+  else
+    yum install -y virt-who || result_code=$(($result_code|32))
+  fi
+}
+
+step 1 &quot;Installing virt-who&quot;
+install_virt_who
+
+if verify_minimal_version; then
+  step 2 &quot;Encrypting password&quot;
+  cr_password=$(virt-who-password --password $(echo Y2hhbmdlbWU=|base64 -d) 2&gt; /dev/null)
+  user_password=$(virt-who-password --password &#39;tsdd7U42PzGD63Ay&#39; 2&gt; /dev/null)
+
+  step 3 &quot;Creating virt-who configuration&quot;
+  cat &gt; /etc/virt-who.d/virt-who-config-31.conf &lt;&lt; EOF
+### This configuration file is managed via the virt-who configure plugin
+### manual edits will be deleted.
+[virt-who-config-31]
+type=esx
+hypervisor_id=hostname
+owner=org33
+
+server=vmware.example.com
+username=root
+encrypted_password=$cr_password
+rhsm_hostname=foreman.example.com
+rhsm_username=virt_who_reporter_31
+rhsm_encrypted_password=$user_password
+rhsm_prefix=/rhsm
+EOF
+  if [ $? -ne 0 ]; then result_code=$(($result_code|2)); fi
+
+  step 4 &quot;Creating sysconfig virt-who configuration&quot;
+  cat &gt; /etc/virt-who.conf &lt;&lt; EOF
+### This configuration file is managed via the virt-who configure plugin
+### manual edits will be deleted.
+[global]
+debug=0
+interval=7200
+oneshot=False
+
+[system_environment]
+EOF
+  if [ $? -ne 0 ]; then result_code=$(($result_code|4)); fi
+
+  step 5 &quot;Enabling and restarting the virt-who service&quot;
+  systemctl enable virt-who || result_code=$(($result_code|8))
+  systemctl restart virt-who || result_code=$(($result_code|16))
+else
+  result_code=$(($result_code|1))
+fi
+
+heading &quot;Finished&quot;
+if [ $result_code -ne 0 ]; then
+  echo &quot;There were some errors during configuration:&quot;
+  [ $(($result_code&amp;0)) -ge 1 ] &amp;&amp; echo &#39;Success&#39;
+  [ $(($result_code&amp;1)) -ge 1 ] &amp;&amp; echo &#39;Newer version of virt-who is required, minimum version is 0.24.2&#39;
+  [ $(($result_code&amp;2)) -ge 1 ] &amp;&amp; echo &#39;Unable to create virt-who config file&#39;
+  [ $(($result_code&amp;4)) -ge 1 ] &amp;&amp; echo &#39;Unable to create sysconfig file&#39;
+  [ $(($result_code&amp;8)) -ge 1 ] &amp;&amp; echo &#39;Unable to enable virt-who service using systemctl&#39;
+  [ $(($result_code&amp;16)) -ge 1 ] &amp;&amp; echo &#39;Unable to start virt-who service, please see virt-who logs for more details&#39;
+  [ $(($result_code&amp;32)) -ge 1 ] &amp;&amp; echo &#39;Unable to install virt-who package, make sure the host is properly subscribed and has access to katello-host-tools repository&#39;
+else
+  echo &quot;Finished successfully&quot;
+fi
+
+exit $result_code
+</pre>
+
+  <h2>Params</h2>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Param name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>location_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current location context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>organization_id</strong>
+      <br>
+      <small>
+        optional
+        
+      </small>
+    </td>
+    <td>
+      
+<p>Set the current organization context for the request</p>
+
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>Integer</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+  <tr style='background-color:rgb(255,255,255);'>
+    <td>
+      <strong>id</strong>
+      <br>
+      <small>
+        required
+        
+      </small>
+    </td>
+    <td>
+      
+        <p><strong>Validations:</strong></p>
+        <ul>
+            <li>
+<p>string from 2 to 128 characters containing only alphanumeric characters, space, &#39;_&#39;, &#39;-&#39; with no leading or trailing space..</p>
+</li>
+        </ul>
+
+      
+
+    </td>
+
+  </tr>
+
+  
+
+    </tbody>
+  </table>
+
+
+
+
+</div>
+
+  
+
+        
+      </div>
+    </div>
+    <hr>
+    <footer></footer>
+  </div>
+  <script type='text/javascript' src='../../../apidoc/javascripts/bundled/jquery.js'></script>
+<script type='text/javascript' src='../../../apidoc/javascripts/bundled/bootstrap-collapse.js'></script>
+<script type='text/javascript' src='../../../apidoc/javascripts/bundled/prettify.js'></script>
+<script type='text/javascript' src='../../../apidoc/javascripts/apipie.js'></script>
+</body>
+</html>
